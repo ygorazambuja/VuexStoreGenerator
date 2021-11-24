@@ -2,6 +2,10 @@
   "name": "vuex-store-generator",
   "displayName": "Vuex Store Generator",
   "description": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.62.0"
