@@ -1,5 +1,12 @@
 import path = require("path");
 import * as vscode from "vscode";
+import {
+  createStateFile,
+  createStoreActionFile,
+  createStoreGetterFile,
+  createStoreIndexFile,
+  createStoreMutationFile,
+} from "./utils/createStoreFiles";
 
 const EXTENSION_NAME = "vuex-store-generator";
 
@@ -42,61 +49,4 @@ async function createStore(path: string, storeName: string) {
 
 async function createStoreDirectory(path: string, storeName: string) {
   vscode.workspace.fs.createDirectory(vscode.Uri.file(`${path}/${storeName}`));
-}
-
-async function createStoreIndexFile(storePath: string) {
-  vscode.workspace.fs.writeFile(
-    vscode.Uri.file(`${storePath}/index.js`),
-    Buffer.from(`import actions from "./actions";
-import mutations from "./mutations";
-import getters from "./getters";
-import state from "./state";
-
-export default {
-  namespaced: true,
-  state,
-  mutations,
-  actions,
-  getters,
-};
-`)
-  );
-}
-
-async function createStoreMutationFile(storePath: string) {
-  vscode.workspace.fs.writeFile(
-    vscode.Uri.file(`${storePath}/mutations.js`),
-    Buffer.from(`export default {
-  updateExample: (state, data) => state.example = data		
-}`)
-  );
-}
-
-async function createStoreActionFile(storePath: string) {
-  vscode.workspace.fs.writeFile(
-    vscode.Uri.file(`${storePath}/actions.js`),
-    Buffer.from(`export default {
-  cleanExample: ({ commit }) => commit("updateExample", {})		
-}`)
-  );
-}
-
-async function createStoreGetterFile(storePath: string) {
-  vscode.workspace.fs.writeFile(
-    vscode.Uri.file(`${storePath}/getters.js`),
-    Buffer.from(`export default {
-  payload(state, getters) {
-	  return state.example;
-  }
-}`)
-  );
-}
-
-async function createStateFile(storePath: string) {
-  vscode.workspace.fs.writeFile(
-    vscode.Uri.file(`${storePath}/state.js`),
-    Buffer.from(`export default {
-  example: {}		
-}`)
-  );
 }
