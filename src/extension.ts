@@ -16,7 +16,8 @@ export function deactivate() {}
 
 async function handleCreateStore({ path }: { path: string }) {
   const storeName = await window.showInputBox({
-    title: "Store Name",
+    title: "Enter the name of the Store",
+    placeHolder: "Example",
   });
   if (path && storeName) {
     return await createStore(path, storeName);
