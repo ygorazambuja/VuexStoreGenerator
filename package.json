@@ -12,7 +12,10 @@
     "vscode": "^1.62.0"
   },
   "categories": [
-    "Other"
+    "Other",
+    "Formatters",
+    "Programming Languages",
+    "Snippets"
   ],
   "activationEvents": [
     "onCommand:vuex-store-generator.generate"
@@ -28,6 +31,7 @@
     "menus": {
       "explorer/context": [
         {
+          "group": "VueXSG",
           "command": "vuex-store-generator.generate",
           "title": "VuexStoreGenerator: Generate Store"
         }

@@ -1,52 +1,26 @@
-import path = require("path");
-import * as vscode from "vscode";
-import {
-  createStateFile,
-  createStoreActionFile,
-  createStoreGetterFile,
-  createStoreIndexFile,
-  createStoreMutationFile,
-} from "./utils/createStoreFiles";
+import { commands, ExtensionContext, window } from "vscode";
+import { createStore } from "./builders";
 
 const EXTENSION_NAME = "vuex-store-generator";
 
-export function activate(context: vscode.ExtensionContext) {
-  const generate = vscode.commands.registerCommand(
+export function activate({ subscriptions }: ExtensionContext) {
+  const generate = commands.registerCommand(
     `${EXTENSION_NAME}.generate`,
     handleCreateStore
   );
 
-  context.subscriptions.push(generate);
+  subscriptions.push(generate);
 }
 
-// this method is called when your extension is deactivated
 export function deactivate() {}
 
-async function handleCreateStore(e: any) {
-  const storeName = await vscode.window.showInputBox({
+async function handleCreateStore({ path }: { path: string }) {
+  const storeName = await window.showInputBox({
     title: "Store Name",
   });
-  if (!!e?.path && !!storeName) {
-    return await createStore(e.path, storeName);
+  if (path && storeName) {
+    return await createStore(path, storeName);
   }
-  return;
-}
 
-async function createStore(path: string, storeName: string) {
-  createStoreDirectory(path, storeName);
-
-  const storePath = path + "/" + storeName;
-  createStoreIndexFile(storePath);
-  createStoreMutationFile(storePath);
-  createStoreActionFile(storePath);
-  createStoreGetterFile(storePath);
-  createStateFile(storePath);
-
-  vscode.window.showInformationMessage(
-    `Store ${storeName} has been created in ${path}`
-  );
-}
-
-async function createStoreDirectory(path: string, storeName: string) {
-  vscode.workspace.fs.createDirectory(vscode.Uri.file(`${path}/${storeName}`));
+  return window.showErrorMessage("Something went wrong!");
 }
