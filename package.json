@@ -3,6 +3,7 @@
   "displayName": "Vuex Store Generator",
   "description": "",
   "publisher": "ygorazambuja",
+  "icon": "src/assets/vuexsg.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/ygorazambuja/VuexStoreGenerator"
