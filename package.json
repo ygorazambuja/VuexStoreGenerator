@@ -1,7 +1,7 @@
 {
   "name": "vuex-store-generator",
   "displayName": "Vuex Store Generator",
-  "description": "",
+  "description": "Create Store for Vuex with a few clicks",
   "publisher": "ygorazambuja",
   "icon": "resource/icon.png",
   "repository": {
