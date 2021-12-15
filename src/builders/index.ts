@@ -1,25 +1,16 @@
 import { window } from "vscode";
 
 import { createStoreDirectory } from "./createStoreDirectory";
-import {
-  createStateFile,
-  createStoreActionFile,
-  createStoreGetterFile,
-  createStoreIndexFile,
-  createStoreMutationFile,
-} from "./createStoreFiles";
+import { CreatorFileByTemplate } from "./CreatorFileByTemplate";
+import { TEMPLATES } from "./templates";
 
 export async function createStore(path: string, storeName: string) {
   createStoreDirectory(path, storeName);
 
   const STORE_PATH = `${path}/${storeName}`;
-
-  createStoreIndexFile(STORE_PATH);
-  createStoreMutationFile(STORE_PATH);
-  createStoreActionFile(STORE_PATH);
-  createStoreGetterFile(STORE_PATH);
-  createStateFile(STORE_PATH);
-
+  const creatorFileByTemplate = new CreatorFileByTemplate(TEMPLATES, STORE_PATH);
+  creatorFileByTemplate.generateAllTemplateFiles();
+  
   window.showInformationMessage(
     `Store ${storeName} has been created in ${path}`
   );
