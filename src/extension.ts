@@ -1,5 +1,5 @@
 import { commands, ExtensionContext, window } from "vscode";
-import { createStore } from "./builders";
+import { createStore, createStoreWithMutationTypes } from "./builders";
 
 const EXTENSION_NAME = "vuex-store-generator";
 
@@ -9,10 +9,14 @@ export function activate({ subscriptions }: ExtensionContext) {
     handleCreateStore
   );
 
-  subscriptions.push(generate);
-}
+  const generateWithMutationTypes = commands.registerCommand(
+    `${EXTENSION_NAME}.generateWithMutationTypes`,
+    handleCreateStoreWithMutationTypes
+  );
 
-export function deactivate() {}
+  subscriptions.push(generate);
+  subscriptions.push(generateWithMutationTypes);
+}
 
 async function handleCreateStore({ path }: { path: string }) {
   const storeName = await window.showInputBox({
@@ -25,3 +29,17 @@ async function handleCreateStore({ path }: { path: string }) {
 
   return window.showErrorMessage("Something went wrong!");
 }
+
+async function handleCreateStoreWithMutationTypes({ path }: { path: string }) {
+  const storeName = await window.showInputBox({
+    title: "Enter the name of the Store",
+    placeHolder: "Example",
+  });
+  if (path && storeName) {
+    return await createStoreWithMutationTypes(path, storeName);
+  }
+
+  return window.showErrorMessage("Something went wrong!");
+}
+
+export function deactivate() {}
