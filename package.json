@@ -19,7 +19,8 @@
     "Snippets"
   ],
   "activationEvents": [
-    "onCommand:vuex-store-generator.generate"
+    "onCommand:vuex-store-generator.generate",
+    "onCommand:vuex-store-generator.generateWithMutationTypes"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -27,6 +28,10 @@
       {
         "command": "vuex-store-generator.generate",
         "title": "Vuex: Generate Store"
+      },
+      {
+        "command": "vuex-store-generator.generateWithMutationTypes",
+        "title": "Vuex: Generate Store With Mutation Types"
       }
     ],
     "menus": {
@@ -35,6 +40,11 @@
           "group": "VueXSG",
           "command": "vuex-store-generator.generate",
           "title": "VuexStoreGenerator: Generate Store"
+        },
+        {
+          "group": "VueXSG",
+          "command": "vuex-store-generator.generateWithMutationTypes",
+          "title": "VuexStoreGenerator: Generate Store Mutation Types"
         }
       ]
     }
