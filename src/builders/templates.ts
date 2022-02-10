@@ -47,7 +47,7 @@ export const TEMPLATES = [
   },
 ];
 
-export const TEMPLATES_MUATION_TYPES = [
+export const TEMPLATES_MUTATION_TYPES = [
   {
     name: "state",
     filename: "state.js",

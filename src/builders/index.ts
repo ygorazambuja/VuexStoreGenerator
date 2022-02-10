@@ -2,7 +2,7 @@ import { window } from "vscode";
 
 import { createStoreDirectory } from "./createStoreDirectory";
 import { CreatorFileByTemplate } from "./CreatorFileByTemplate";
-import { TEMPLATES, TEMPLATES_MUATION_TYPES } from "./templates";
+import { TEMPLATES, TEMPLATES_MUTATION_TYPES } from "./templates";
 
 export async function createStore(path: string, storeName: string) {
   createStoreDirectory(path, storeName);
@@ -20,7 +20,7 @@ export async function createStoreWithMutationTypes(path: string, storeName: stri
   createStoreDirectory(path, storeName);
 
   const STORE_PATH = `${path}/${storeName}`;
-  const creatorFileByTemplate = new CreatorFileByTemplate(TEMPLATES_MUATION_TYPES, STORE_PATH);
+  const creatorFileByTemplate = new CreatorFileByTemplate(TEMPLATES_MUTATION_TYPES, STORE_PATH);
   creatorFileByTemplate.generateAllTemplateFiles();
   
   window.showInformationMessage(
