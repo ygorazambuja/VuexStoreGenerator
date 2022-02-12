@@ -1,5 +1,9 @@
 import { commands, ExtensionContext, window } from "vscode";
-import { createStore, createStoreWithMutationTypes } from "./builders";
+import {
+  createStore,
+  createStoreTest,
+  createStoreWithMutationTypes,
+} from "./builders";
 
 const EXTENSION_NAME = "vuex-store-generator";
 
@@ -14,8 +18,14 @@ export function activate({ subscriptions }: ExtensionContext) {
     handleCreateStoreWithMutationTypes
   );
 
+  const generateTestDirectory = commands.registerCommand(
+    `${EXTENSION_NAME}.generateTests`,
+    handleCreateTestDirectory
+  );
+
   subscriptions.push(generate);
   subscriptions.push(generateWithMutationTypes);
+  subscriptions.push(generateTestDirectory);
 }
 
 async function handleCreateStore({ path }: { path: string }) {
@@ -37,6 +47,14 @@ async function handleCreateStoreWithMutationTypes({ path }: { path: string }) {
   });
   if (path && storeName) {
     return await createStoreWithMutationTypes(path, storeName);
+  }
+
+  return window.showErrorMessage("Something went wrong!");
+}
+
+async function handleCreateTestDirectory({ path }: { path: string }) {
+  if (path) {
+    createStoreTest(path);
   }
 
   return window.showErrorMessage("Something went wrong!");
