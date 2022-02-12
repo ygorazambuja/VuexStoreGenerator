@@ -1,7 +1,7 @@
 # Vuex Store Generator
 
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
-[![Deploy Extension](https://github.com/ygorazambuja/VuexStoreGenerator/actions/workflows/deploy.yml/badge.svg)](https://github.com/ygorazambuja/VuexStoreGenerator/actions/workflows/deploy.yml)
+[![Automatic Publishing](https://github.com/ygorazambuja/VuexStoreGenerator/actions/workflows/deploy.yml/badge.svg)](https://github.com/ygorazambuja/VuexStoreGenerator/actions/workflows/deploy.yml)
 
 
 ## Description
