@@ -53,11 +53,9 @@ async function handleCreateStoreWithMutationTypes({ path }: { path: string }) {
 }
 
 async function handleCreateTestDirectory({ path }: { path: string }) {
-  if (path) {
-    createStoreTest(path);
-  }
-
-  return window.showErrorMessage("Something went wrong!");
+  return path
+    ? createStoreTest(path)
+    : window.showErrorMessage("Something went wrong!");
 }
 
 export function deactivate() {}
